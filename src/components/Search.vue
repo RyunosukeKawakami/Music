@@ -21,17 +21,20 @@ export default {
   },
   
   methods:{
-    SearchMusic: async function(text){
+    SearchMusic: async function(keyword){
       const accessToken = 'Bearer ' + await this.GetAccessToken();
-      const response = await fetch("https://api.spotify.com/v1/search?q="+text+"&type=album,track&limit=5", {
+      const response = await fetch("https://api.spotify.com/v1/search?q="+keyword+"&type=album,track&limit=5", {
         headers: {
           Authorization: accessToken,
         },
         method: "GET"
       });
-      
       const obj = await response.json();
       console.log(obj);
+      
+      this.$store.commit('setAlbums', obj.albums);
+      this.$store.commit('setTracks', obj.tracks);
+      this.$store.commit('setKeyword', keyword);
     },
 
     //it gets AccessToken to connect API    
