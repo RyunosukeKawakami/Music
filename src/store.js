@@ -6,7 +6,9 @@ export default new Vuex.Store({
   state: {
     albums:[],
     tracks:[],
-    keyword:''
+    keyword:'',
+    accessToken:'',
+    audioDom:[]
   },
   
   mutations: {
@@ -20,12 +22,14 @@ export default new Vuex.Store({
     
     setKeyword(state, keyword){
       state.keyword = keyword;
+    },
+    
+    setAccessToken(state,token){
+      state.accessToken = token;
+    },
+    
+    setAudioDom(state, audioDom){
+      state.audioDom = audioDom;
     }
   },
-  
-  actions: {
-    saveKeyword(context, keyword){
-      context.commit('setKeyword',keyword);
-    }
-  }
 })

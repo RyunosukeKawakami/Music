@@ -11,7 +11,10 @@
       <p>{{ this.artist }}</p>
     </b-card-text>
 
-    <b-button id="button" @click="PlayMusic">▶︎</b-button>
+    
+    <audio ref="audio" :src=this.music_url @ended="EndPlayer()"/>
+    <b-button v-show="showPlayer" id="play" @click="PlayerContoroller()">▶︎</b-button>
+    <b-button v-show="!showPlayer" id="pause" @click="PlayerContoroller()" variant="outline-secondary"><div id="pause-mark">■</div></b-button>
   </b-card>
 </template>
 
@@ -21,29 +24,58 @@ export default {
   name: 'Track',
   
   props:{
+    index:[Number],
     title:[String],
     artist:[String],
     image:[String],
+    music_url:[String],
   },
   
-  method:{
-    async PlayMusic(){
-      const response = await fetch("https://api.spotify.com/v1/me/player/play", {
-        body:{
-          uris:[
-            "spotify:track:0ipvRATjnKeAlIRNS5WqhN"
-          ]
-        },
-        method: "PUT"
-      });
+  data(){
+    return{
+      showPlayer:true
     }
   },
   
-  commputed:{
-    setTrack(){
-      return this.$store.state.tracks;
+  mounted(){
+    this.$root.$on('playerClicked', (index) => {
+      const audio = this.$refs.audio;
+    
+      //押されたのが自分で再生していない場合
+      if(index === this.index && this.showPlayer === true){
+        this.PlayMusic(audio);
+      }
+      //押されたのが自分で再生している場合
+      else if(index === this.index && this.showPlayer === false){
+        this.PauseMusic(audio);
+      }
+      //押されたのが他の場合は停止
+      else if(index !== this.index && audio.paused === false){
+        this.PauseMusic(audio);
+      }
+      
+    })
+  },
+  
+  methods:{
+    PlayerContoroller(){
+      this.$root.$emit('playerClicked',this.index);
+    },
+    
+    PlayMusic(audio){
+      this.showPlayer = false;
+      audio.play();
+    },
+    
+    PauseMusic(audio){
+      this.showPlayer = true;
+      audio.pause();
+    },
+    
+    EndPlayer(){
+      this.showPlayer = true;
     }
-  }
+  },
 }
 </script>
 
@@ -55,10 +87,18 @@ export default {
   border-radius:4px;
 }
 
-#button{
+#play{
   color:#ffffff;
   background-color:#7119FF;
   padding:10px 30px;
   border:none;
+}
+
+#pause{
+  padding:4px 30px;
+}
+
+#pause-mark{
+  font-size:23px;
 }
 </style>

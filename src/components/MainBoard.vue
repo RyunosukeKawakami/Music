@@ -6,13 +6,14 @@
       <Track 
         v-for="(track,index) in getTracks"
         :key="index"
+        :index="index"
         :title="track.name"
         :image="track.album.images[0].url"
         :artist="track.artists[0].name"
+        :music_url="track.preview_url"
+        @playerButton="ChangePlayingnow($event)"
       />
     </b-card-group>
-      
-    {{getTracks.items}}
   </div>
 </template>
 
@@ -28,7 +29,7 @@ export default {
   
   data(){
     return{
-      track: []
+      track: [],
     }
   },
   
@@ -40,8 +41,7 @@ export default {
     getTracks(){
       return this.$store.state.tracks.items;
     }
-  }
-  
+  },
 }
 </script>
 

@@ -14,6 +14,28 @@ export default {
   components: {
     MainBoard,
     Navbar
+  },
+  
+  data(){
+    return{
+      clientID:'07e27cb2ce6f456d80d64df6cacfbeef',
+      clienetSecret:'cc911f3f4ac2486794f2fcf816b51d16'
+    }
+  },
+  
+  async created(){
+    const rawClientCredential = this.clientID + ':' + this.clienetSecret;
+    const clientCredential = "Basic " + btoa(rawClientCredential);
+    const response = await fetch("https://accounts.spotify.com/api/token", {
+      body: "grant_type=client_credentials",
+      headers: {
+        Authorization: clientCredential,
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      method: "POST"
+    });
+    const obj = await response.json();
+    this.$store.commit('setAccessToken','Bearer ' + obj.access_token);
   }
 }
 </script>
