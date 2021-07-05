@@ -3,8 +3,7 @@
     <b-input-group-prepend is-text>
       <b-icon icon="search"></b-icon>
     </b-input-group-prepend>
-    
-    <b-form-input type="search" placeholder="Search music" id="searchbox" @change="SearchMusic($event)"></b-form-input>
+    <b-form-input type="search" placeholder="Search music"  id="searchbox" @change="SearchMusic($event)"></b-form-input>
   </b-input-group>
 </template>
 
@@ -36,6 +35,6 @@ export default {
 
 <style>
 #searchbox{
-  padding-right: 250px;
+  width:300px;
 }
 </style>

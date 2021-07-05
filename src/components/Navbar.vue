@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-navbar type="dark" variant="dark">
+        <b-navbar type="dark" variant="dark" id="navbar">
         <b-navbar-brand tag="h1" id="brand" class="px-4">Vue Music</b-navbar-brand>
         <b-navbar-nav>
           <!--検索-->
@@ -26,6 +26,10 @@ export default {
 <style scoped>
 h3 {
   margin: 40px 0 0;
+}
+
+#navbar{
+  background: linear-gradient(to bottom, #212529 95%, #6c757d);
 }
 
 #brand {

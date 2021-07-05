@@ -13,8 +13,10 @@
 
     
     <audio ref="audio" :src=this.music_url @ended="EndPlayer()"/>
-    <b-button v-show="showPlayer" id="play" @click="PlayerContoroller()">▶︎</b-button>
-    <b-button v-show="!showPlayer" id="pause" @click="PlayerContoroller()" variant="outline-secondary"><div id="pause-mark">■</div></b-button>
+    <div v-if="canPlay">
+      <b-button v-show="showPlayer" id="play" @click="PlayerContoroller()">▶︎</b-button>
+      <b-button v-show="!showPlayer" id="pause" @click="PlayerContoroller()" variant="outline-secondary"><div id="pause-mark">■</div></b-button>
+    </div>
   </b-card>
 </template>
 
@@ -33,7 +35,8 @@ export default {
   
   data(){
     return{
-      showPlayer:true
+      showPlayer:true,
+      canPlay:true
     }
   },
   
@@ -85,6 +88,12 @@ export default {
   color:#343a40; 
   border:none;
   border-radius:4px;
+  transition: transform .1s;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
+}
+
+#track:hover{
+  transform:scale(1.03);
 }
 
 #play{

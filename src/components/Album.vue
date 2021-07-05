@@ -11,7 +11,7 @@
       <p>{{ this.artist }}</p>
     </b-card-text>
 
-    <b-button href="#" id="button">▶︎</b-button>
+    <b-button :href=this.url id="button" >︎INFO</b-button>
   </b-card>
 </template>
 
@@ -21,9 +21,11 @@ export default {
   name: 'Album',
   
   props:{
+    index:[Number],
     title:[String],
     artist:[String],
     image:[String],
+    url:[String],
   },
   
   commputed:{
@@ -45,7 +47,6 @@ export default {
 
 #button{
   color:#ffffff;
-  background-color:#7119FF;
   padding:10px 30px;
   border:none;
 }
