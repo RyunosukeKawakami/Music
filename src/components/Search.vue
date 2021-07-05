@@ -23,11 +23,11 @@ export default {
         method: "GET"
       });
       const obj = await response.json();
-      console.log(obj);
       
       this.$store.commit('setAlbums', obj.albums);
       this.$store.commit('setTracks', obj.tracks);
       this.$store.commit('setKeyword', keyword);
+      this.$store.commit('setIsTitle',false);
     },
   }
 }

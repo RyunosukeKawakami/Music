@@ -27,13 +27,6 @@ export default {
     image:[String],
     url:[String],
   },
-  
-  commputed:{
-    setAlbum(){
-      return this.$store.state.albums;
-    }
-
-  }
 }
 </script>
 

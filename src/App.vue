@@ -1,19 +1,24 @@
 <template>
   <div id="app">
     <Navbar></Navbar>
-    <MainBoard msg="Welcome to Your Vue.js App" id="mainboard"/>
+    
+    <Title v-if=this.setIsTitle id="app-title"></Title>
+    <MainBoard v-else msg="Welcome to Your Vue.js App" id="mainboard"/>
+    
   </div>
 </template>
 
 <script>
 import MainBoard from './components/MainBoard.vue'
+import Title from './components/Title.vue'
 import Navbar from './components/Navbar.vue'
 
 export default {
   name: 'App',
   components: {
     MainBoard,
-    Navbar
+    Title,
+    Navbar,
   },
   
   data(){
@@ -23,6 +28,7 @@ export default {
     }
   },
   
+  //get AccessToken to connect Spotifya API
   async created(){
     const rawClientCredential = this.clientID + ':' + this.clienetSecret;
     const clientCredential = "Basic " + btoa(rawClientCredential);
@@ -36,6 +42,12 @@ export default {
     });
     const obj = await response.json();
     this.$store.commit('setAccessToken','Bearer ' + obj.access_token);
+  },
+  
+  computed:{
+    setIsTitle(){
+      return this.$store.state.isTitle;
+    }
   }
 }
 </script>
@@ -49,6 +61,11 @@ export default {
 }
 
 #mainboard{
+  background-color:#6c757d;
+  height:1024px;
+}
+
+#app-title{
   background-color:#6c757d;
   height:1024px;
 }

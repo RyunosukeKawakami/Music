@@ -17,8 +17,7 @@ export default {
   name: 'Navbar',
   components:{
     Search
-  }
-
+  },
 }
 </script>
 

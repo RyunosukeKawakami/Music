@@ -17,6 +17,10 @@
       <b-button v-show="showPlayer" id="play" @click="PlayerContoroller()">▶︎</b-button>
       <b-button v-show="!showPlayer" id="pause" @click="PlayerContoroller()" variant="outline-secondary"><div id="pause-mark">■</div></b-button>
     </div>
+    <div v-else>
+      <br/>
+      NO DATA
+    </div>
   </b-card>
 </template>
 
@@ -40,7 +44,18 @@ export default {
     }
   },
   
+  updated(){
+    if(this.music_url !== null){
+      this.canPlay = true;
+    }else{
+      this.canPlay = false;
+    }
+  },
+  
   mounted(){
+
+    
+    
     this.$root.$on('playerClicked', (index) => {
       const audio = this.$refs.audio;
     

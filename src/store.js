@@ -4,6 +4,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isTitle:true,
     albums:[],
     tracks:[],
     keyword:'',
@@ -12,6 +13,10 @@ export default new Vuex.Store({
   },
   
   mutations: {
+    setIsTitle(state, isTitle){
+      state.isTitle = isTitle;
+    },
+    
     setAlbums(state, albums){
       state.albums = albums;
     },
