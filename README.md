@@ -7,3 +7,5 @@ APIにはSpotifyの提供しているAPIを利用いたしました。
 - Vue.js
 - Vuex
 - animate.css
+
+外部に公開していませんので、実行するにはnpm run serveでサーバを立ち上げる必要があります。
