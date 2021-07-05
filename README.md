@@ -1,24 +1,9 @@
-# market
+# Music
 
-## Project setup
-```
-npm install
-```
+Vue.jsを利用した音楽サイト風のWEBアプリケーションになります。
+APIにはSpotifyの提供しているAPIを利用いたしました。
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+ライブラリは以下のものを利用しました。
+- Vue.js
+- Vuex
+- animate.css
