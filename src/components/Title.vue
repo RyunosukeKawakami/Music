@@ -1,7 +1,8 @@
 <template>
   <div>
-      <h1 id="welcome" class="animate__animated animate__backInDown">Vue Musicへようこそ！</h1>
-      <h2 id="sub" class="animate__animated animate__backInDown">好きな曲を探してみましょう！</h2>
+      <img id="back" src="@/assets/back.jpg"/>
+      <h1 id="welcome">Vue Musicへようこそ！</h1>
+      <h2 id="sub">好きな曲を探してみましょう！</h2>
   </div>
 </template>
 
@@ -10,6 +11,12 @@
 </script>
 
 <style>
+#back{
+  height:1024px;
+  width:1800px;
+  opacity:0.3;
+}
+
 #welcome{
   text-align:center;
   font-size: 50px;
@@ -20,6 +27,8 @@
   top: 45%;
   left: 35%;
   text-shadow: 1px 1px 2px #212529;
+  animation: fadeIn 3s ease 0.3s 1 normal;
+  
 }
 
 #sub{
@@ -33,5 +42,11 @@
   top: 52%;
   left: 38%;
   text-shadow: 1px 1px 2px #212529;
+  animation: fadeIn 3s ease 0.3s 1 normal;
+}
+
+@keyframes fadeIn { /*animation-nameで設定した値を書く*/
+    0% {opacity: 0} /*アニメーション開始時は不透明度0%*/
+    100% {opacity: 1} /*アニメーション終了時は不透明度100%*/
 }
 </style>
